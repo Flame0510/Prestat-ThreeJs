@@ -43,7 +43,7 @@ camera.position.z = cameraZ;
 //RENDERER
 const renderer = new THREE.WebGLRenderer({
   alpha: true,
-  antialias: true,
+  antialias: true
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -63,7 +63,7 @@ const tl = gsap.timeline();
 let model;
 
 loader.load(
-  "assets/glb/prestat-open-correct.glb",
+  "assets/glb/prestat-open-correct-gold.glb",
 
   (gltf) => {
     model = gltf.scene;
@@ -89,7 +89,7 @@ loader.load(
       {
         x: 1,
         y: -2,
-        duration: 4,
+        duration: 4
       },
       0
     )
@@ -97,7 +97,7 @@ loader.load(
         camera.position,
         {
           z: cameraZ + 1,
-          duration: 4,
+          duration: 4
         },
         0
       )
@@ -106,7 +106,7 @@ loader.load(
         {
           x: 5,
           y: 1.2,
-          duration: 12,
+          duration: 12
         },
         4
       )
@@ -123,7 +123,7 @@ loader.load(
         {
           z: cameraZ <= 3 ? 1.8 : cameraZ - 1.8,
           duration: 10,
-          delay: 6,
+          delay: 6
         },
         4
       )
@@ -139,7 +139,7 @@ loader.load(
         camera.position,
         {
           z: cameraZ + 1,
-          duration: 20,
+          duration: 20
         },
         20
       )
@@ -149,7 +149,7 @@ loader.load(
           x: 13.5,
           y: 5,
           duration: 20,
-          delay: 0.2,
+          delay: 0.2
         },
         20
       );
@@ -164,7 +164,7 @@ loader.load(
       end: "bottom",
       scrub: true,
       //markers: true,
-      pin: true,
+      pin: true
     });
 
     scene.add(model);
