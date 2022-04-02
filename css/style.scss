@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'Garamonb';
+  src: url("../assets/fonts/Garamond.ttf");
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+
+  .container {
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+
+      position: absolute;
+      padding: 20px;
+
+      #logo {
+        width: 200px;
+        text-align: center;
+      }
+    }
+
+    .threejs-container {
+      canvas {
+        width: 100% !important;
+      }
+    }
+
+    .message-container {
+      background: url("../assets/images/background.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      .message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        width: 500px;
+        margin: 0 auto;
+
+        padding: 50px 20px;
+
+        #title {
+          margin: 0;
+          font-size: 32px;
+          font-family: Garamonb;
+        }
+
+        #subtitle {
+          width: 100%;
+          text-align: right;
+        }
+      }
+    }
+  }
+}
