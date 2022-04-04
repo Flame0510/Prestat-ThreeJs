@@ -229,8 +229,6 @@ const material = new THREE.ShaderMaterial({
 const box = new THREE.Mesh(geometry, material);
 //scene.add(box);
 
-camera.position.set(0, 0, 2);
-
 function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
