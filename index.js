@@ -62,8 +62,10 @@ const tl = gsap.timeline();
 
 let model;
 
+loader.crossOrigin = true;
+
 loader.load(
-  "assets/glb/prestat-open-correct-gold.glb",
+  "./assets/glb/prestat-open-correct.glb",
 
   (gltf) => {
     model = gltf.scene;
@@ -227,7 +229,19 @@ const material = new THREE.ShaderMaterial({
 }); */
 
 const box = new THREE.Mesh(geometry, material);
+box.rotation.set(3, 2, 0);
 //scene.add(box);
+
+gsap.to(box.rotation, {
+  x: 10,
+  scrollTrigger: {
+    trigger: ".threejsContainer",
+    start: "top",
+    end: "bottom",
+    scrub: true,
+    pin: true
+  }
+});
 
 function animate() {
   requestAnimationFrame(animate);
@@ -258,26 +272,12 @@ controls.target.set(0, 0, 0); */
 
 animate();
 
-function resizeRendererToDisplaySize(container, renderer) {
-  const canvas = container;
-  var width = window.innerWidth;
-  var height = window.innerHeight;
-  var canvasPixelWidth = canvas.width / window.devicePixelRatio;
-  var canvasPixelHeight = canvas.height / window.devicePixelRatio;
-
-  renderer.setSize(width, height, false);
-}
-
-const setSize = (container, camera, renderer) => {
-  camera.aspect = container.clientWidth / container.clientHeight;
-  camera.updateProjectionMatrix();
-
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
-};
-
-window.addEventListener("resize", () =>
-  //setSize(container, camera, renderer)
-  //resizeRendererToDisplaySize(container, renderer)
-  renderer.setSize(window.innerWidth, window.innerHeight, false)
+window.addEventListener(
+  "resize",
+  function () {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  },
+  false
 );
