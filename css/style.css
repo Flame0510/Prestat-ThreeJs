@@ -1,68 +1,235 @@
 @font-face {
-  font-family: "Garamonb";
-  src: url("../assets/fonts/Garamond.ttf");
+  font-family: "Agne";
+  src: url("../assets/fonts/Agne-Regular.otf");
+}
+
+@font-face {
+  font-family: "JosefinSans";
+  src: url("../assets/fonts/JosefinSans.ttf");
 }
 
 html,
 body {
   margin: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-body .container .logo-container {
+html .container #close-btn,
+body .container #close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+html .container #close-btn img,
+body .container #close-btn img {
+  width: 24px;
+}
+
+html .container .loader,
+body .container .loader {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
+  height: 100%;
+  background: #876b9e;
   position: absolute;
-  padding: 20px 0;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
-body .container .logo-container #logo {
+html .container .loader img,
+body .container .loader img {
+  width: 200px;
+}
+
+html .container nav,
+body .container nav {
+  width: 100%;
+  position: absolute;
+}
+
+html .container nav .nav-container,
+body .container nav .nav-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+}
+
+html .container nav .nav-container #logo,
+body .container nav .nav-container #logo {
   width: 200px;
   text-align: center;
 }
 
-body .container .message-container {
-  background: url("../assets/images/background.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+html .container nav .nav-container img,
+body .container nav .nav-container img {
+  cursor: pointer;
 }
 
-body .container .message-container .message {
+html .container .modal,
+body .container .modal {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
+  height: 100%;
+  -webkit-transform: translate(100%);
+          transform: translate(100%);
+  background: #fff;
+  font-family: Agne;
+  position: absolute;
+  right: 0;
+}
+
+@media screen and (min-width: 768px) {
+  html .container .modal,
+  body .container .modal {
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html .container .modal,
+  body .container .modal {
+    width: 100%;
+    top: 50%;
+  }
+}
+
+html .container .modal .modal-content,
+body .container .modal .modal-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  width: 500px;
-  margin: 0 auto;
-  padding: 50px 20px;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: calc(100% - 160px);
+  height: calc(100% - 180px);
 }
 
-body .container .message-container .message #title {
-  margin: 0;
-  font-size: 32px;
-  font-family: Garamonb;
+@media screen and (max-width: 768px) {
+  html .container .modal .modal-content,
+  body .container .modal .modal-content {
+    width: calc(100% - 32px);
+  }
 }
 
-body .container .message-container .message #subtitle {
+html .container .modal .modal-content .modal-top .modal-title,
+body .container .modal .modal-content .modal-top .modal-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+html .container .modal #purchase-btn,
+body .container .modal #purchase-btn {
+  width: 300px;
+  max-width: 100%;
+  color: #fff;
+  background: #e9006f;
+  padding: 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+html .container .modal #purchase-btn:hover,
+body .container .modal #purchase-btn:hover {
+  background: #b60057;
+}
+
+@media screen and (max-width: 768px) {
+  html .container .modal #purchase-btn,
+  body .container .modal #purchase-btn {
+    position: absolute;
+    bottom: 16px;
+  }
+}
+
+html .container .about,
+body .container .about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
-  text-align: right;
+  height: 100%;
+  background: url("../assets/images/about.svg");
+  background-size: cover;
+  background-position: center;
+  color: #002e5c;
+  font-family: Agne;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+html .container .about #title,
+body .container .about #title {
+  margin-bottom: 20px;
+  font-size: 48px;
+  font-family: Agne;
+}
+
+html .container .about p,
+body .container .about p {
+  margin: 20px 0;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+  font-size: 14px;
+  font-family: JosefinSans;
+}
+
+html .container .about #line,
+body .container .about #line {
+  width: 150px;
+  border: 0.5px solid #002e5c;
 }
 /*# sourceMappingURL=style.css.map */

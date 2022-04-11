@@ -15,34 +15,152 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
 
-    <script src="threex.domevents.js"></script>
-
-    <script type="module" src="index.js"></script>
+    <script src="js/modules/threex.domevents.js"></script>
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
     <div class="container">
+      <!-- <div class="loader">
+        <img id="logo" src="assets/images/logo.svg" />
+      </div> -->
+
       <div class="threejsContainer">
-        <div class="logo-container">
-          <img id="logo" src="assets/images/logo.png" />
+        <nav>
+          <div class="nav-container">
+            <img id="info" src="assets/images/info.svg" alt="info-icon" />
+            <img id="logo" src="assets/images/logo.svg" alt="logo-icon" />
+            <img id="cart" src="assets/images/cart.svg" alt="cart-icon" />
+          </div>
+        </nav>
+
+        <div class="about">
+          <button id="close-btn">
+            <img src="assets/images/close-btn.png" />
+          </button>
+
+          <h1 id="title">About</h1>
+
+          <span id="line"></span>
+
+          <p>
+            Prestat, Holder of two Royal Warrants and loyal supported of the
+            british royal household, is celebrating with a special collection
+            inspired by the Queen’s iconic Hat collection - a symbol of her
+            everlasting elegance and colorful spirit.
+          </p>
+
+          <span id="line"></span>
         </div>
+
         <div class="modal modal-big-box">
-          <h1>BIG BOX</h1>
-          <p>BIG BOX GRANDE</p>
-          <button>ACCATTA</button>
+          <div class="modal-content">
+            <div class="modal-top">
+              <div class="modal-title">
+                <h1 id="title">Assorted Box</h1>
+                <button id="close-btn">
+                  <img src="assets/images/close-btn.png" />
+                </button>
+              </div>
+              <p>
+                A collection of our finest chocolates and truffles, from the
+                great classics to our most creative concotions.
+              </p>
+            </div>
+
+            <button id="purchase-btn">Purchase</button>
+          </div>
+        </div>
+
+        <div class="modal modal-little-box">
+          <div class="modal-content">
+            <div class="modal-top">
+              <div class="modal-title">
+                <h1 id="modal-title">Little Assorted Box</h1>
+                <button id="close-btn">
+                  <img src="assets/images/close-btn.png" />
+                </button>
+              </div>
+              <p>
+                A collection of our finest chocolates and truffles, from the
+                great classics to our most creative concotions.
+              </p>
+            </div>
+
+            <button id="purchase-btn">Purchase</button>
+          </div>
         </div>
       </div>
-      <!-- <div class="message-container">
-        <div class="message">
-          <h4 id="title">
-            "I do so adore chocolate truffles as Prestat makes them."
-          </h4>
-          <div id="subtitle">Roald Dahl</div>
-          <div class="block_content"></div>
-        </div>
-      </div> -->
     </div>
   </body>
+
+  <script>
+    //const loader = document.querySelector(".loader");
+
+    document
+      .querySelector("nav .nav-container #info")
+      .addEventListener("click", () =>
+        gsap
+          .timeline()
+          .to(".about", {
+            display: "flex",
+          })
+          .from(".about", {
+            opacity: 0,
+          })
+      );
+
+    document.querySelector(".about #close-btn").addEventListener("click", () =>
+      gsap.to(".about", {
+        display: "none",
+        opacity: 0,
+      })
+    );
+
+    //loader.style.display = "none";
+
+    document.querySelector(".about").style.display = "none";
+
+    //document.addEventListener("load", () => (loader.style.display = "flex"));
+
+    /* const manager = new THREE.LoadingManager();
+    manager.onStart = () => loader.style.display = "flex";
+    manager.onLoad = () => loader.style.display = "none"; */
+
+    /* document.addEventListener(
+      "DOMContentLoaded",
+      () => ((loader.style.display = "none"), console.log("LOADED"))
+    ); */
+  </script>
+
+  <script src="js/scene.js"></script>
+  <script src="js/isMobile.js"></script>
+  <script src="js/camera.js"></script>
+  <script src="js/models.js"></script>
+  <script src="js/lights.js"></script>
+  <script src="js/geometry.js"></script>
+
+  <script>
+    animate = () => {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    };
+
+    //gui.destroy();
+
+    animate();
+
+    window.addEventListener(
+      "resize",
+      function () {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        checkMobile();
+        calcCameraZ();
+      },
+      false
+    );
+  </script>
 </html>
