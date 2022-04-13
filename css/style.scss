@@ -1,190 +1,383 @@
-@font-face {
-  font-family: "Agne";
-  src: url("../assets/fonts/Agne-Regular.otf");
+*,
+::after,
+::before {
+  box-sizing: border-box;
 }
 
 @font-face {
-  font-family: "JosefinSans";
-  src: url("../assets/fonts/JosefinSans.ttf");
+  font-family: "JosefinSansRegular";
+  src: url("../assets/font/JosefinSans-Regular.ttf");
 }
 
-html,
-body {
-  margin: 0;
+img {
+  max-width: 100%;
+}
+
+html {
+  width: 100%;
+  height: 100vh;
+
   overflow: hidden;
 
-  .container {
-    #close-btn {
-      background: none;
+  position: fixed;
+  top: 0;
+  left: 0;
 
-      border: none;
+  body {
+    margin: 0;
+    overflow: hidden;
 
-      cursor: pointer;
+    font-family: "JosefinSans-Light";
+    font-weight: 400;
 
-      img {
-        width: 24px;
+    background: #876b9e;
+
+    .container {
+      canvas {
+        width: 100%;
+        height: 100vh;
       }
-    }
 
-    .loader {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: 100%;
-      height: 100%;
-
-      background: #876b9e;
-
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      z-index: 1;
-
-      img {
-        width: 200px;
+      .title {
+        font-family: Agne;
+        font-weight: 400;
       }
-    }
 
-    nav {
-      width: 100%;
+      .close-btn {
+        background: none;
 
-      position: absolute;
+        border: none;
 
-      .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        padding: 20px;
-
-        #logo {
-          width: 200px;
-          text-align: center;
-        }
+        cursor: pointer;
 
         img {
-          cursor: pointer;
+          width: 24px;
         }
       }
-    }
 
-    .modal {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: 50%;
-      height: 100%;
-
-      transform: translate(100%);
-
-      background: #fff;
-
-      font-family: Agne;
-
-      position: absolute;
-
-      right: 0;
-
-      @media screen and (min-width: 768px) {
-        top: 0;
-      }
-
-      @media screen and (max-width: 768px) {
-        width: 100%;
-
-        top: 50%;
-      }
-
-      .modal-content {
+      .loader {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         flex-direction: column;
 
-        width: calc(100% - 160px);
-        height: calc(100% - 180px);
+        width: 100%;
+        height: 100vh;
 
-        @media screen and (max-width: 768px) {
-          width: calc(100% - 32px);
+        background: #fff;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        z-index: 1;
+
+        lottie-player {
+          width: 250px;
+          height: 250px;
+          margin-bottom: 32px;
+
+          @media screen and (max-width: 768px) {
+            width: 150px;
+            height: 150px;
+          }
         }
 
-        .modal-top {
-          .modal-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        img {
+          height: 64px;
+          margin-bottom: 96px;
+
+          @media screen and (max-width: 768px) {
+            height: 32px;
           }
         }
       }
 
-      #purchase-btn {
-        width: 300px;
-        max-width: 100%;
+      nav {
+        width: 100%;
+
+        position: absolute;
+
+        //z-index: 100;
+
+        .nav-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          padding: 20px;
+
+          .logo {
+            max-width: 100%;
+            text-align: center;
+          }
+          button {
+            background: none;
+            border: none;
+          }
+          img {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        width: 100%;
+        height: 50%;
 
         color: #fff;
-        background: #e9006f;
 
-        padding: 20px;
-
-        border: none;
-        border-radius: 4px;
-
-        cursor: pointer;
-
-        &:hover {
-          background: darken(#e9006f, 10%);
-        }
-
-        @media screen and (max-width: 768px) {
-          position: absolute;
-          bottom: 16px;
-        }
-      }
-    }
-
-    .about {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-
-      width: 100%;
-      height: 100%;
-
-      background: url("../assets/images/about.svg");
-      background-size: cover;
-      background-position: center;
-
-      color: #002e5c;
-      font-family: Agne;
-
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      z-index: 100;
-
-      #title {
-        margin-bottom: 20px;
-        font-size: 48px;
-        font-family: Agne;
-      }
-
-      p {
-        margin: 20px 0;
-        width: 80%;
-        max-width: 500px;
         text-align: center;
-        font-size: 14px;
-        font-family: JosefinSans;
+
+        position: absolute;
+
+        z-index: -1;
+
+        .title,
+        .subtitle {
+          max-width: 80%;
+        }
+
+        .title {
+          font-size: 64px;
+          margin: 0;
+
+          @media screen and (max-width: 768px) {
+            margin-top: 125px;
+            font-size: 32px;
+          }
+        }
+
+        .subtitle,
+        .cta {
+          margin-bottom: 48px;
+          font-family: "JosefinSans-Regular";
+          font-size: 14px;
+          line-height: 20px;
+        }
       }
 
-      #line {
-        width: 150px;
-        border: 0.5px solid #002e5c;
+      .modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #002e5c;
+
+        width: 100%;
+        height: 100%;
+
+        background: #fff;
+
+        position: absolute;
+        top: 100%;
+        right: 0;
+
+        overflow: hidden;
+
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+
+        @media screen and (min-width: 768px) {
+          width: 40%;
+          max-width: 500px;
+          top: 0;
+          right: -100%;
+          border-radius: 0;
+        }
+
+        .modal-content {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+
+          width: 100%;
+
+          //width: calc(100% - 160px);
+          height: 100%;
+
+          @media screen and (max-width: 768px) {
+            //width: calc(100% - 32px);
+          }
+
+          .modal-top {
+            padding: 0 24px;
+            padding-top: 32px;
+
+            background: #fff;
+
+            //position: fixed;
+
+            @media screen and (min-width: 768px) {
+              padding: 0 48px;
+              padding-top: 48px;
+            }
+
+            .modal-title-wrapper {
+              display: flex;
+              align-items: flex-start;
+              width: 100%;
+              justify-content: space-between;
+            }
+
+            .modal-title {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 0;
+              margin-bottom: 16px;
+              font-family: Agne;
+
+              @media screen and (min-width: 768px) {
+                margin-bottom: 32px;
+              }
+            }
+
+            .modal-p {
+              margin: 0;
+              padding-bottom: 32px;
+            }
+          }
+
+          .modal-images-container {
+            padding: 0 24px;
+            padding-bottom: 96px;
+
+            overflow-y: auto;
+
+            @media screen and (min-width: 768px) {
+              padding: 0 48px;
+              padding-bottom: 128px;
+            }
+          }
+
+          h2 {
+            font-family: "Agne";
+            font-size: 20px;
+            text-align: left;
+            width: 100%;
+            margin: 0;
+            padding: 0 24px;
+            padding-bottom: 24px;
+
+            @media screen and (min-width: 768px) {
+              font-size: 24px;
+              padding: 0 48px;
+              padding-bottom: 32px;
+            }
+          }
+
+          .img-text-container {
+            display: flex;
+            padding-bottom: 16px;
+            align-items: center;
+          }
+
+          .product-img {
+            max-width: 100px;
+            margin-right: 16px;
+          }
+
+          .product-title {
+            font-family: "JosefinSans-Bold";
+            font-size: 14px;
+            margin: 0;
+            padding-bottom: 8px;
+
+            @media screen and (min-width: 768px) {
+              font-size: 16px;
+            }
+          }
+
+          .product-description {
+            font-family: "JosefinSans-Light";
+            font-size: 14px;
+            margin: 0;
+
+            @media screen and (min-width: 768px) {
+              font-size: 16px;
+            }
+          }
+
+          .little-box-image {
+            max-width: 80%;
+          }
+
+          .purchase-btn {
+            width: 300px;
+            max-width: 100%;
+
+            color: #fff;
+            background: #e9006f;
+
+            padding: 20px;
+
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            font-family: JosefinSans-Bold;
+
+            cursor: pointer;
+
+            &:hover {
+              background: darken(#e9006f, 10%);
+            }
+
+            position: fixed;
+            bottom: 16px;
+
+            opacity: 0;
+
+            @media screen and (min-width: 768px) {
+              bottom: 48px;
+            }
+          }
+        }
+      }
+
+      .about {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        width: 100%;
+        height: 100%;
+
+        background: url("../assets/images/about.jpg");
+        background-size: cover;
+        background-position: center;
+
+        color: #002e5c;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        z-index: 100;
+
+        .title {
+          font-size: 48px;
+          margin: 0;
+        }
+
+        .description {
+          margin: 20px 0;
+          width: 80%;
+          max-width: 500px;
+          text-align: center;
+          font-size: 14px;
+        }
+
+        .line {
+          width: 150px;
+          border: 0.5px solid #002e5c;
+        }
       }
     }
   }

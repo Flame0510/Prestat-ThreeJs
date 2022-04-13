@@ -9,7 +9,7 @@ scene.add(light.target);
 scene.add(light);
 
 const lightHelper = new THREE.CameraHelper(light.shadow.camera);
-scene.add(lightHelper);
+//scene.add(lightHelper);
 
 const lightGui = light;
 const lightFolder = gui.addFolder("LIGHT");
@@ -22,7 +22,7 @@ lightFolder.add(lightGui.rotation, "y", -5, 20);
 lightFolder.add(lightGui.rotation, "z", -5, 20);
 
 //TOP LIGHT
-const topLight = new THREE.PointLight(0xffffff, 0.5);
+const topLight = new THREE.PointLight(0xffffff, 1);
 topLight.position.y = 5;
 scene.add(topLight);
 
@@ -37,10 +37,10 @@ overLight.position.z = -10;
 scene.add(overLight);
 
 //BEHIND LIGHT
-const behindLight = new THREE.PointLight(0xffffff, 0.6);
-behindLight.position.set(0, 4, 6);
+const behindLight = new THREE.SpotLight(0xffffff, 1.2);
+behindLight.position.set(0, 2, 6);
 //behindLight.castShadow = true;
-//behindLight.target.position.set(0, 0, 0);
+behindLight.target.position.set(0, 0, 0);
 scene.add(behindLight);
 
 const behindLightFolder = gui.addFolder("BEHIND LIGHT");
@@ -50,7 +50,7 @@ behindLightFolder.add(behindLight.position, "y", -10, 10);
 behindLightFolder.add(behindLight.position, "z", -10, 10);
 //behindLightFolder.open();
 
-scene.add(new THREE.PointLightHelper(behindLight, 1));
+//scene.add(new THREE.PointLightHelper(behindLight, 1));
 
 //LEFT LIGHT
 const leftLight = new THREE.PointLight(0xffffff, 1);
@@ -60,7 +60,7 @@ scene.add(leftLight);
 //RIGHT LIGHT
 const rightLight = new THREE.PointLight(0xffffff, 1);
 rightLight.position.x = 5;
-//scene.add(rightLight);
+scene.add(rightLight);
 
 const rectLight = new THREE.RectAreaLight(0xffff, 5);
 rectLight.scale.set(2, 2, 2);

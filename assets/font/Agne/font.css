@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Agne';
+  src: url('Agne-Regular.eot');
+  src: url('Agne-Regular.eot?#iefix') format('embedded-opentype'),
+       url('Agne-Regular.svg#Agne-Regular') format('svg'),
+       url('Agne-Regular.ttf') format('truetype'),
+       url('Agne-Regular.woff') format('woff'),
+       url('Agne-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

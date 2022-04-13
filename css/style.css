@@ -1,33 +1,57 @@
-@font-face {
-  font-family: "Agne";
-  src: url("../assets/fonts/Agne-Regular.otf");
+*,
+::after,
+::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 @font-face {
-  font-family: "JosefinSans";
-  src: url("../assets/fonts/JosefinSans.ttf");
+  font-family: "JosefinSansRegular";
+  src: url("../assets/font/JosefinSans-Regular.ttf");
 }
 
-html,
-body {
+img {
+  max-width: 100%;
+}
+
+html {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+html body {
   margin: 0;
   overflow: hidden;
+  font-family: "JosefinSans-Light";
+  font-weight: 400;
+  background: #876b9e;
 }
 
-html .container #close-btn,
-body .container #close-btn {
+html body .container canvas {
+  width: 100%;
+  height: 100vh;
+}
+
+html body .container .title {
+  font-family: Agne;
+  font-weight: 400;
+}
+
+html body .container .close-btn {
   background: none;
   border: none;
   cursor: pointer;
 }
 
-html .container #close-btn img,
-body .container #close-btn img {
+html body .container .close-btn img {
   width: 24px;
 }
 
-html .container .loader,
-body .container .loader {
+html body .container .loader {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -37,28 +61,49 @@ body .container .loader {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
-  height: 100%;
-  background: #876b9e;
+  height: 100vh;
+  background: #fff;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
 }
 
-html .container .loader img,
-body .container .loader img {
-  width: 200px;
+html body .container .loader lottie-player {
+  width: 250px;
+  height: 250px;
+  margin-bottom: 32px;
 }
 
-html .container nav,
-body .container nav {
+@media screen and (max-width: 768px) {
+  html body .container .loader lottie-player {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+html body .container .loader img {
+  height: 64px;
+  margin-bottom: 96px;
+}
+
+@media screen and (max-width: 768px) {
+  html body .container .loader img {
+    height: 32px;
+  }
+}
+
+html body .container nav {
   width: 100%;
   position: absolute;
 }
 
-html .container nav .nav-container,
-body .container nav .nav-container {
+html body .container nav .nav-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -71,19 +116,21 @@ body .container nav .nav-container {
   padding: 20px;
 }
 
-html .container nav .nav-container #logo,
-body .container nav .nav-container #logo {
-  width: 200px;
+html body .container nav .nav-container .logo {
+  max-width: 100%;
   text-align: center;
 }
 
-html .container nav .nav-container img,
-body .container nav .nav-container img {
+html body .container nav .nav-container button {
+  background: none;
+  border: none;
+}
+
+html body .container nav .nav-container img {
   cursor: pointer;
 }
 
-html .container .modal,
-body .container .modal {
+html body .container .header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -93,39 +140,79 @@ body .container .modal {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 50%;
-  height: 100%;
-  -webkit-transform: translate(100%);
-          transform: translate(100%);
-  background: #fff;
-  font-family: Agne;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  height: 50%;
+  color: #fff;
+  text-align: center;
   position: absolute;
-  right: 0;
+  z-index: -1;
 }
 
-@media screen and (min-width: 768px) {
-  html .container .modal,
-  body .container .modal {
-    top: 0;
-  }
+html body .container .header .title,
+html body .container .header .subtitle {
+  max-width: 80%;
+}
+
+html body .container .header .title {
+  font-size: 64px;
+  margin: 0;
 }
 
 @media screen and (max-width: 768px) {
-  html .container .modal,
-  body .container .modal {
-    width: 100%;
-    top: 50%;
+  html body .container .header .title {
+    margin-top: 125px;
+    font-size: 32px;
   }
 }
 
-html .container .modal .modal-content,
-body .container .modal .modal-content {
+html body .container .header .subtitle,
+html body .container .header .cta {
+  margin-bottom: 48px;
+  font-family: "JosefinSans-Regular";
+  font-size: 14px;
+  line-height: 20px;
+}
+
+html body .container .modal {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #002e5c;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+@media screen and (min-width: 768px) {
+  html body .container .modal {
+    width: 40%;
+    max-width: 500px;
+    top: 0;
+    right: -100%;
+    border-radius: 0;
+  }
+}
+
+html body .container .modal .modal-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -133,19 +220,37 @@ body .container .modal .modal-content {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: calc(100% - 160px);
-  height: calc(100% - 180px);
+  width: 100%;
+  height: 100%;
 }
 
-@media screen and (max-width: 768px) {
-  html .container .modal .modal-content,
-  body .container .modal .modal-content {
-    width: calc(100% - 32px);
+html body .container .modal .modal-content .modal-top {
+  padding: 0 24px;
+  padding-top: 32px;
+  background: #fff;
+}
+
+@media screen and (min-width: 768px) {
+  html body .container .modal .modal-content .modal-top {
+    padding: 0 48px;
+    padding-top: 48px;
   }
 }
 
-html .container .modal .modal-content .modal-top .modal-title,
-body .container .modal .modal-content .modal-top .modal-title {
+html body .container .modal .modal-content .modal-top .modal-title-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+html body .container .modal .modal-content .modal-top .modal-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -155,10 +260,98 @@ body .container .modal .modal-content .modal-top .modal-title {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-family: Agne;
 }
 
-html .container .modal #purchase-btn,
-body .container .modal #purchase-btn {
+@media screen and (min-width: 768px) {
+  html body .container .modal .modal-content .modal-top .modal-title {
+    margin-bottom: 32px;
+  }
+}
+
+html body .container .modal .modal-content .modal-top .modal-p {
+  margin: 0;
+  padding-bottom: 32px;
+}
+
+html body .container .modal .modal-content .modal-images-container {
+  padding: 0 24px;
+  padding-bottom: 96px;
+  overflow-y: auto;
+}
+
+@media screen and (min-width: 768px) {
+  html body .container .modal .modal-content .modal-images-container {
+    padding: 0 48px;
+    padding-bottom: 128px;
+  }
+}
+
+html body .container .modal .modal-content h2 {
+  font-family: "Agne";
+  font-size: 20px;
+  text-align: left;
+  width: 100%;
+  margin: 0;
+  padding: 0 24px;
+  padding-bottom: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  html body .container .modal .modal-content h2 {
+    font-size: 24px;
+    padding: 0 48px;
+    padding-bottom: 32px;
+  }
+}
+
+html body .container .modal .modal-content .img-text-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 16px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+html body .container .modal .modal-content .product-img {
+  max-width: 100px;
+  margin-right: 16px;
+}
+
+html body .container .modal .modal-content .product-title {
+  font-family: "JosefinSans-Bold";
+  font-size: 14px;
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  html body .container .modal .modal-content .product-title {
+    font-size: 16px;
+  }
+}
+
+html body .container .modal .modal-content .product-description {
+  font-family: "JosefinSans-Light";
+  font-size: 14px;
+  margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+  html body .container .modal .modal-content .product-description {
+    font-size: 16px;
+  }
+}
+
+html body .container .modal .modal-content .little-box-image {
+  max-width: 80%;
+}
+
+html body .container .modal .modal-content .purchase-btn {
   width: 300px;
   max-width: 100%;
   color: #fff;
@@ -166,27 +359,27 @@ body .container .modal #purchase-btn {
   padding: 20px;
   border: none;
   border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  font-family: JosefinSans-Bold;
   cursor: pointer;
+  position: fixed;
+  bottom: 16px;
+  opacity: 0;
 }
 
-html .container .modal #purchase-btn:hover,
-body .container .modal #purchase-btn:hover {
+html body .container .modal .modal-content .purchase-btn:hover {
   background: #b60057;
 }
 
-@media screen and (max-width: 768px) {
-  html .container .modal #purchase-btn,
-  body .container .modal #purchase-btn {
-    position: absolute;
-    bottom: 16px;
+@media screen and (min-width: 768px) {
+  html body .container .modal .modal-content .purchase-btn {
+    bottom: 48px;
   }
 }
 
-html .container .about,
-body .container .about {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+html body .container .about {
+  display: none;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -199,36 +392,30 @@ body .container .about {
           flex-direction: column;
   width: 100%;
   height: 100%;
-  background: url("../assets/images/about.svg");
+  background: url("../assets/images/about.jpg");
   background-size: cover;
   background-position: center;
   color: #002e5c;
-  font-family: Agne;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 100;
 }
 
-html .container .about #title,
-body .container .about #title {
-  margin-bottom: 20px;
+html body .container .about .title {
   font-size: 48px;
-  font-family: Agne;
+  margin: 0;
 }
 
-html .container .about p,
-body .container .about p {
+html body .container .about .description {
   margin: 20px 0;
   width: 80%;
   max-width: 500px;
   text-align: center;
   font-size: 14px;
-  font-family: JosefinSans;
 }
 
-html .container .about #line,
-body .container .about #line {
+html body .container .about .line {
   width: 150px;
   border: 0.5px solid #002e5c;
 }

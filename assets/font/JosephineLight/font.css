@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'JosefinSans-Light';
+  src: url('JosefinSans-Light.eot');
+  src: url('JosefinSans-Light.eot?#iefix') format('embedded-opentype'),
+       url('JosefinSans-Light.ttf') format('truetype'),
+       url('JosefinSans-Light.woff') format('woff'),
+       url('JosefinSans-Light.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

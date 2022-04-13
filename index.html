@@ -4,149 +4,328 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="prestat-favicon/favicon.ico" />
+
     <title>Prestat</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/ScrollTrigger.min.js"></script>
+    <script src="js/modules/gsap.js"></script>
+    <script src="js/modules/ScrollTrigger.js"></script>
 
-    <script src="https://unpkg.com/three@0.139.2/build/three.js"></script>
-    <script src="https://unpkg.com/three@0.139.2/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://unpkg.com/three@0.139.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="js/modules/three.js"></script>
+    <script src="js/modules/GLTFLoader.js"></script>
+    <script src="js/modules/OrbitControls.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+    <script src="js/modules/dat.gui.js"></script>
 
     <script src="js/modules/threex.domevents.js"></script>
+
+    <script src="js/modules/lottie-player.js"></script>
+
+    <link rel="stylesheet" href="assets/font/Agne/font.css" />
+    <link rel="stylesheet" href="assets/font/JosephineSansRegular/font.css" />
+    <link rel="stylesheet" href="assets/font/JosephineSansBold/font.css" />
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
     <div class="container">
-      <!-- <div class="loader">
-        <img id="logo" src="assets/images/logo.svg" />
-      </div> -->
+      <div class="loader">
+        <lottie-player
+          src="prestat-loader-1.json"
+          background="transparent"
+          speed="1"
+          loop
+          autoplay
+        ></lottie-player>
+        <img src="assets/images/loader-logo.svg" />
+      </div>
+
+      <nav>
+        <div class="nav-container">
+          <button id="info">
+            <img class="info" src="assets/images/info.svg" alt="info-icon" />
+          </button>
+          <img class="logo" src="assets/images/logo.svg" alt="logo-icon" />
+          <a href="https://prestat.com" target="_blank">
+            <img class="cart" src="assets/images/cart.svg" alt="cart-icon" />
+          </a>
+        </div>
+      </nav>
 
       <div class="threejsContainer">
-        <nav>
-          <div class="nav-container">
-            <img id="info" src="assets/images/info.svg" alt="info-icon" />
-            <img id="logo" src="assets/images/logo.svg" alt="logo-icon" />
-            <img id="cart" src="assets/images/cart.svg" alt="cart-icon" />
-          </div>
-        </nav>
+        <div class="header">
+          <h1 class="title">The Jubilee Collection</h1>
+          <p class="subtitle">
+            A special collection to honour Her Majesty Queen Elizabeth and the
+            Platinum Juiblee of her glorious and longlived reign.
+          </p>
+          <p class="cta">Click on the products to learn more</p>
+        </div>
 
         <div class="about">
-          <button id="close-btn">
-            <img src="assets/images/close-btn.png" />
+          <button class="close-btn" id="about-close-btn">
+            <img src="assets/images/close-btn.svg" />
           </button>
 
-          <h1 id="title">About</h1>
+          <h1 class="title">About</h1>
 
-          <span id="line"></span>
+          <span class="line"></span>
 
-          <p>
+          <p class="description">
             Prestat, Holder of two Royal Warrants and loyal supported of the
             british royal household, is celebrating with a special collection
             inspired by the Queen’s iconic Hat collection - a symbol of her
             everlasting elegance and colorful spirit.
           </p>
 
-          <span id="line"></span>
+          <span class="line"></span>
         </div>
 
         <div class="modal modal-big-box">
           <div class="modal-content">
-            <div class="modal-top">
-              <div class="modal-title">
-                <h1 id="title">Assorted Box</h1>
-                <button id="close-btn">
-                  <img src="assets/images/close-btn.png" />
+            <div class="modal-top modal-element">
+              <div class="modal-title-wrapper">
+                <h1 class="modal-title">Assorted Box</h1>
+                <button class="close-btn">
+                  <img src="assets/images/close-btn.svg" />
                 </button>
               </div>
-              <p>
+              <p class="modal-p">
                 A collection of our finest chocolates and truffles, from the
                 great classics to our most creative concotions.
               </p>
             </div>
+            <h2 class="modal-element">Inside the box</h2>
+            <div class="modal-images-container">
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/01.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Salted Caramel Crown</h3>
+                  <p class="product-description">
+                    Smooth and intense sea salted caramel encased in our single
+                    origin dark chocolate.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/02.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Berries & Cream Truffle</h3>
+                  <p class="product-description">
+                    Hand decorated fruity mixed berries ganache piped in milk
+                    chocolate.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/03.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">The Ultimate Dark Truffle</h3>
+                  <p class="product-description">
+                    Our signature recipe of pure dark chocolate indulgence,
+                    velvety and intense.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/04.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Earl Grey Crown</h3>
+                  <p class="product-description">
+                    Milk crown filled with golden caramel infused with premium
+                    Earl Grey tea and citrusy bergamot oils.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/05.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Saffron & Ginger Fudge</h3>
+                  <p class="product-description">
+                    Hand decorated exotic saffron and fiery ginger fudge enrobed
+                    in milk chocolate.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/06.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Rice Crispy Nougat</h3>
+                  <p class="product-description">
+                    PGI Piedmontese hazelnuts and rice crisps expertly combined
+                    to reach the perfect crispy balance.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/07.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Prestat’s Gianduja</h3>
+                  <p class="product-description">
+                    Finest PGI Piedmontese gianduja paste encased in silky white
+                    chocolate.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/08.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Dark Violet Crème</h3>
+                  <p class="product-description">
+                    Violet cream enrobed in a dark chocolate shell adorned with
+                    a crystallised petal.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/09.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Dark Rose Crème</h3>
+                  <p class="product-description">
+                    An all time classic. Our hand decorated rose cream is
+                    encased in smooth dark chocolate.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/10.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Dark Cassis Jelly</h3>
+                  <p class="product-description">
+                    Sharp and sweet blackcurrant Pate de Fruit double coated in
+                    a thin dark chocolate layer.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/11.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Walnut Marzipan</h3>
+                  <p class="product-description">
+                    Hand decorated Walnut marzipan, double coated in finest milk
+                    chocolate.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/12.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Dark Biscuit Cake</h3>
+                  <p class="product-description">
+                    A new favourite. Fine crumbled biscuit in a crispy dark
+                    chocolate concoction.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/13.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">White Pistachio Crown</h3>
+                  <p class="product-description">
+                    Finest Sicilian Pistachio ganache piped into a sweet white
+                    chocolate crown.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/14.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Milk Rhubarb Truffle</h3>
+                  <p class="product-description">
+                    Delicate and yet sharp British rhubarb ganache encased in
+                    milk chocolate.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/15.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Hazelnut Cluster</h3>
+                  <p class="product-description">
+                    Caramelised hazelnuts individually placed in a gianduja
+                    base, coated in dark chocolate.
+                  </p>
+                </div>
+              </div>
+              <div class="img-text-container modal-element">
+                <img class="product-img" src="assets/images/16.png" alt="" />
+                <div class="description-wrapper">
+                  <h3 class="product-title">Coffee Caramel Crown</h3>
+                  <p class="product-description">
+                    Deep dark chocolate and Illy Coffee come together in perfect
+                    harmony in our soft caramel chocolate.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-            <button id="purchase-btn">Purchase</button>
+            <a href="https://prestat.com/" target="_blank" class="purchase-btn"
+              >Purchase</a
+            >
           </div>
         </div>
 
         <div class="modal modal-little-box">
           <div class="modal-content">
-            <div class="modal-top">
-              <div class="modal-title">
-                <h1 id="modal-title">Little Assorted Box</h1>
-                <button id="close-btn">
-                  <img src="assets/images/close-btn.png" />
+            <div class="modal-top modal-element">
+              <div class="modal-title-wrapper">
+                <h1 class="modal-title">Thins</h1>
+                <button class="close-btn">
+                  <img src="assets/images/close-btn.svg" />
                 </button>
               </div>
-              <p>
-                A collection of our finest chocolates and truffles, from the
-                great classics to our most creative concotions.
+              <p class="modal-p">
+                A snappy melt in your mouth celebration of a great british
+                classic, rhubarb.
               </p>
             </div>
 
-            <button id="purchase-btn">Purchase</button>
+            <img
+              class="little-box-image modal-element"
+              src="assets/images/thins-det-2-min.png"
+              alt="thins chocolate"
+            />
+
+            <a href="https://prestat.com/" target="_blank" class="purchase-btn"
+              >Purchase</a
+            >
           </div>
         </div>
       </div>
     </div>
   </body>
 
-  <script>
-    //const loader = document.querySelector(".loader");
+  <script src="js/startAnimation.js"></script>
 
-    document
-      .querySelector("nav .nav-container #info")
-      .addEventListener("click", () =>
-        gsap
-          .timeline()
-          .to(".about", {
-            display: "flex",
-          })
-          .from(".about", {
-            opacity: 0,
-          })
-      );
+  <script src="js/about.js"></script>
 
-    document.querySelector(".about #close-btn").addEventListener("click", () =>
-      gsap.to(".about", {
-        display: "none",
-        opacity: 0,
-      })
-    );
-
-    //loader.style.display = "none";
-
-    document.querySelector(".about").style.display = "none";
-
-    //document.addEventListener("load", () => (loader.style.display = "flex"));
-
-    /* const manager = new THREE.LoadingManager();
-    manager.onStart = () => loader.style.display = "flex";
-    manager.onLoad = () => loader.style.display = "none"; */
-
-    /* document.addEventListener(
-      "DOMContentLoaded",
-      () => ((loader.style.display = "none"), console.log("LOADED"))
-    ); */
-  </script>
-
-  <script src="js/scene.js"></script>
   <script src="js/isMobile.js"></script>
+
+  <script src="js/setup.js"></script>
   <script src="js/camera.js"></script>
-  <script src="js/models.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/model.js"></script>
   <script src="js/lights.js"></script>
   <script src="js/geometry.js"></script>
 
   <script>
+    const hideLoader = () => {
+      //startAnimation();
+
+      gsap.timeline().to(".loader", {
+        display: "none",
+        opacity: 0,
+      });
+    };
+
     animate = () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
     };
 
+    gui.close();
     //gui.destroy();
 
     animate();
