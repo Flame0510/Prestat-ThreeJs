@@ -28,8 +28,7 @@ document.querySelector("#info").addEventListener("click", () =>
         opacity: 0,
         y: 20,
         //x: 100,
-        duration: 0.5,
-        stagger: 0.1,
+        stagger: 0.2,
       },
       0
     )
