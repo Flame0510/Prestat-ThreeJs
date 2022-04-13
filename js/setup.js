@@ -15,7 +15,7 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.physicallyCorrectLights = true;
 renderer.toneMapping = THREE.CineonToneMapping;
 renderer.toneMappingExposure = 3;
-renderer.setPixelRatio(devicePixelRatio);
+renderer.setPixelRatio(devicePixelRatio < 2 ? 2 : devicePixelRatio);
 
 //texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
