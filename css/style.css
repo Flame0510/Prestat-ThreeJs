@@ -36,13 +36,15 @@ html body .container canvas {
   height: 100vh;
 }
 
-html body .container .title {
+html body .container .title,
+html body .container .modal-title {
   font-family: Agne;
   font-weight: 400;
 }
 
 html body .container .close-btn {
   background: none;
+  padding: 24px;
   border: none;
   cursor: pointer;
 }
@@ -98,6 +100,26 @@ html body .container .loader img {
   }
 }
 
+html body .container .loader .loader-progress-bar {
+  width: 100%;
+  max-width: 200px;
+  height: 2px;
+  background: #e0e0e0;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  html body .container .loader .loader-progress-bar {
+    max-width: 300px;
+  }
+}
+
+html body .container .loader .loader-progress-bar .progress-bar {
+  height: 100%;
+  background: #57256d;
+  position: absolute;
+}
+
 html body .container nav {
   width: 100%;
   position: absolute;
@@ -130,6 +152,69 @@ html body .container nav .nav-container img {
   cursor: pointer;
 }
 
+html body .container #labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+html body .container #labels .tap-indicator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+html body .container #labels .tap-indicator .tap-indicator-element {
+  position: absolute;
+  background: #f0a4c2;
+  border-radius: 50%;
+}
+
+html body .container #labels .tap-indicator .tap-indicator-element:nth-child(1) {
+  width: 50px;
+  height: 50px;
+  opacity: 0.2;
+}
+
+@media screen and (min-width: 768px) {
+  html body .container #labels .tap-indicator .tap-indicator-element:nth-child(1) {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+html body .container #labels .tap-indicator .tap-indicator-element:nth-child(2) {
+  width: 30px;
+  height: 30px;
+  opacity: 0.4;
+}
+
+@media screen and (min-width: 768px) {
+  html body .container #labels .tap-indicator .tap-indicator-element:nth-child(2) {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+html body .container #labels .tap-indicator .tap-indicator-element:nth-child(3) {
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 768px) {
+  html body .container #labels .tap-indicator .tap-indicator-element:nth-child(3) {
+    width: 50px;
+    height: 50px;
+  }
+}
+
 html body .container .header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -160,12 +245,13 @@ html body .container .header .subtitle {
 html body .container .header .title {
   font-size: 64px;
   margin: 0;
+  margin-top: 125px;
+  font-size: 32px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   html body .container .header .title {
-    margin-top: 125px;
-    font-size: 32px;
+    margin-top: 48px;
   }
 }
 
@@ -225,15 +311,16 @@ html body .container .modal .modal-content {
 }
 
 html body .container .modal .modal-content .modal-top {
+  width: 100%;
   padding: 0 24px;
-  padding-top: 32px;
+  padding-top: 24px;
   background: #fff;
 }
 
 @media screen and (min-width: 768px) {
   html body .container .modal .modal-content .modal-top {
     padding: 0 48px;
-    padding-top: 48px;
+    padding-top: 24px;
   }
 }
 
@@ -241,13 +328,13 @@ html body .container .modal .modal-content .modal-top .modal-title-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  width: 100%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
 }
 
 html body .container .modal .modal-content .modal-top .modal-title {
@@ -260,54 +347,52 @@ html body .container .modal .modal-content .modal-top .modal-title {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 0;
-  margin-bottom: 16px;
+  margin: 0;
   font-family: Agne;
 }
 
-@media screen and (min-width: 768px) {
-  html body .container .modal .modal-content .modal-top .modal-title {
-    margin-bottom: 32px;
-  }
+html body .container .modal .modal-content .modal-content-container {
+  padding: 0 24px;
+  padding-bottom: 96px;
+  overflow-y: auto;
+  /* .little-box-image {
+              padding: 0 24px;
+
+              @media screen and (min-width: 768px) {
+                padding: 0;
+              }
+            } */
 }
 
-html body .container .modal .modal-content .modal-top .modal-p {
+html body .container .modal .modal-content .modal-content-container .modal-p {
   margin: 0;
   padding-bottom: 32px;
 }
 
-html body .container .modal .modal-content .modal-images-container {
-  padding: 0 24px;
-  padding-bottom: 96px;
-  overflow-y: auto;
-}
-
 @media screen and (min-width: 768px) {
-  html body .container .modal .modal-content .modal-images-container {
+  html body .container .modal .modal-content .modal-content-container {
     padding: 0 48px;
     padding-bottom: 128px;
   }
 }
 
-html body .container .modal .modal-content h2 {
+html body .container .modal .modal-content .modal-content-container h2 {
   font-family: "Agne";
   font-size: 20px;
   text-align: left;
   width: 100%;
   margin: 0;
-  padding: 0 24px;
   padding-bottom: 24px;
 }
 
 @media screen and (min-width: 768px) {
-  html body .container .modal .modal-content h2 {
+  html body .container .modal .modal-content .modal-content-container h2 {
     font-size: 24px;
-    padding: 0 48px;
     padding-bottom: 32px;
   }
 }
 
-html body .container .modal .modal-content .img-text-container {
+html body .container .modal .modal-content .modal-content-container .img-text-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -317,12 +402,12 @@ html body .container .modal .modal-content .img-text-container {
           align-items: center;
 }
 
-html body .container .modal .modal-content .product-img {
+html body .container .modal .modal-content .modal-content-container .product-img {
   max-width: 100px;
   margin-right: 16px;
 }
 
-html body .container .modal .modal-content .product-title {
+html body .container .modal .modal-content .modal-content-container .product-title {
   font-family: "JosefinSans-Bold";
   font-size: 14px;
   margin: 0;
@@ -330,30 +415,25 @@ html body .container .modal .modal-content .product-title {
 }
 
 @media screen and (min-width: 768px) {
-  html body .container .modal .modal-content .product-title {
+  html body .container .modal .modal-content .modal-content-container .product-title {
     font-size: 16px;
   }
 }
 
-html body .container .modal .modal-content .product-description {
+html body .container .modal .modal-content .modal-content-container .product-description {
   font-family: "JosefinSans-Light";
   font-size: 14px;
   margin: 0;
 }
 
 @media screen and (min-width: 768px) {
-  html body .container .modal .modal-content .product-description {
+  html body .container .modal .modal-content .modal-content-container .product-description {
     font-size: 16px;
   }
 }
 
-html body .container .modal .modal-content .little-box-image {
-  max-width: 80%;
-}
-
 html body .container .modal .modal-content .purchase-btn {
-  width: 300px;
-  max-width: 100%;
+  width: calc(100% - 48px);
   color: #fff;
   background: #e9006f;
   padding: 20px;
@@ -374,6 +454,8 @@ html body .container .modal .modal-content .purchase-btn:hover {
 
 @media screen and (min-width: 768px) {
   html body .container .modal .modal-content .purchase-btn {
+    width: 300px;
+    max-width: 100%;
     bottom: 48px;
   }
 }

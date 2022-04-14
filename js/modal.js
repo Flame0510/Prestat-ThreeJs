@@ -6,14 +6,14 @@ let littleBoxModalCompleteOpened = false;
 
 let openModalTl = null;
 
-let modelOpened = false;
+let modalOpened = false;
+let objectSelected = false;
 
 //MODAL SHOW / HIDE FUNCTIONS
 const closeModal = (modalClass = ".modal") => {
   controls.enabled = false;
 
-  openModalTl.kill();
-  openModalTl = null;
+  modalOpened = false;
 
   gsap
     .timeline({
@@ -30,12 +30,15 @@ const closeModal = (modalClass = ".modal") => {
         bigBoxOpened = false;
         littleBoxOpened = false;
 
-        modelOpened = false;
+        objectSelected = false;
 
         bigBoxModalCompleteOpened = false;
         littleBoxModalCompleteOpened = false;
 
         controls.enabled = true;
+
+        openModalTl.kill();
+        openModalTl = null;
       },
     })
     .to(
@@ -120,6 +123,14 @@ const closeModal = (modalClass = ".modal") => {
         duration: 0.5,
       },
       0
+    )
+    .to(
+      ".tap-indicator",
+      {
+        display: "flex",
+        opacity: 1,
+      },
+      0
     );
   /* .to(
       ".modal .modal-content",
@@ -136,7 +147,13 @@ const closeModal = (modalClass = ".modal") => {
 
 const openModal = (modalClass) => {
   openModalTl = null;
-  openModalTl = gsap.timeline({ paused: true });
+  openModalTl = gsap.timeline({
+    paused: true,
+    onComplete: () => {
+      modalOpened = true;
+      modalCompleteOpened = false;
+    },
+  });
 
   console.log(modalClass);
 
@@ -207,6 +224,14 @@ const openModal = (modalClass) => {
         duration: 1,
       },
       0
+    )
+    .to(
+      ".tap-indicator",
+      {
+        display: "none",
+        opacity: 0,
+      },
+      0
     );
 
   openModalTl.restart();
@@ -226,37 +251,66 @@ document.querySelectorAll(".modal .purchase-btn").forEach((modal) =>
     e.preventDefault();
     e.stopPropagation();
 
-    window.open('https://prestat.com', '_blank');
+    window.open("https://prestat.com", "_blank");
   })
 );
+
+const canvas = document.querySelector("canvas");
+
+"mousedown touchstart".split(" ").forEach((event) => {
+  canvas.addEventListener(
+    event,
+    (e) => (touchstart = event.includes("mouse") ? e : e.changedTouches[0])
+  );
+});
+
+"mouseup touchend".split(" ").forEach((event) => {
+  canvas.addEventListener(event, (e) => {
+    touchend = event.includes("mouse") ? e : e.changedTouches[0];
+    handleGesture() === "click" && modalOpened && closeModal();
+  });
+});
+
+const handleGesture = () => {
+  return touchstart.screenX === touchend.screenX &&
+    touchstart.screenY === touchend.screenY
+    ? "click"
+    : "swipe";
+};
 
 if (isMobile) {
   const openModalComplete = (modalClass) => {
     openModalTl.to(modalClass, {
       top: 0,
-      duration: 1,
+      duration: 0.5,
     });
 
     openModalTl.resume();
   };
 
-  document
-    .querySelector(".modal-big-box")
-    .addEventListener(
-      "click",
-      () =>
-        bigBoxModalCompleteOpened === false &&
-        ((bigBoxModalCompleteOpened = true),
-        openModalComplete(".modal-big-box"))
-    );
+  const swipe = (modalClass, modalCompleteOpened) => {
+    const target = document.querySelector(modalClass);
 
-  document
-    .querySelector(".modal-little-box")
-    .addEventListener(
-      "click",
-      () =>
-        littleBoxModalCompleteOpened === false &&
-        ((littleBoxModalCompleteOpened = true),
-        openModalComplete(".modal-little-box"))
-    );
+    const handleGesture = () => {
+      if (touchendY < touchstartY) return "up";
+      if (touchendY > touchstartY) return "down";
+    };
+
+    target.addEventListener("touchstart", (e) => {
+      touchstartY = e.changedTouches[0].screenY;
+    });
+
+    target.addEventListener("touchend", (e) => {
+      touchendY = e.changedTouches[0].screenY;
+      if (handleGesture() === "down") {
+        modalOpened && closeModal(), (modalCompleteOpened = false);
+      } else {
+        modalCompleteOpened === false &&
+          ((modalCompleteOpened = true), openModalComplete(modalClass));
+      }
+    });
+  };
+
+  swipe(".modal-big-box", bigBoxModalCompleteOpened);
+  swipe(".modal-little-box", littleBoxModalCompleteOpened);
 }

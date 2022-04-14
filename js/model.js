@@ -2,8 +2,80 @@ const timeline = gsap.timeline();
 
 const domEvents = new THREEx.DomEvents(camera, renderer.domElement);
 
+const labelContainerElem = document.querySelector("#labels");
+
+const instances = [];
+
+const makeInstance = (obj, x, y) => {
+  const tapIndicator = document.createElement("div");
+  tapIndicator.classList.add("tap-indicator");
+
+  const tapIndicatorElement1 = document.createElement("div");
+  tapIndicatorElement1.classList.add("tap-indicator-element");
+  tapIndicator.appendChild(tapIndicatorElement1);
+
+  const tapIndicatorElement2 = document.createElement("div");
+  tapIndicatorElement2.classList.add("tap-indicator-element");
+  tapIndicator.appendChild(tapIndicatorElement2);
+
+  const tapIndicatorElement3 = document.createElement("div");
+  tapIndicatorElement3.classList.add("tap-indicator-element");
+  tapIndicator.appendChild(tapIndicatorElement3);
+
+  labelContainerElem.appendChild(tapIndicator);
+
+  instances.push({ obj, tapIndicator, x, y });
+
+  return { obj, tapIndicator };
+};
+
+const addTapIndicatorAnimation = () => {
+  const size = isMobile ? 20 : 50;
+
+  gsap
+    .timeline({ repeat: -1 })
+    .from(
+      ".tap-indicator-element",
+      {
+        width: size,
+        height: size,
+        duration: 1,
+        stagger: 0.1,
+      },
+      0
+    )
+    .to(
+      ".tap-indicator-element",
+      {
+        width: size,
+        height: size,
+        duration: 1,
+        stagger: 0.1,
+      },
+      1
+    );
+};
+
+//LOADER MANAGER
+const manager = new THREE.LoadingManager();
+const progressBar = document.querySelector(".progress-bar");
+
+manager.onStart = function (url, itemsLoaded, itemsTotal) {
+  progressBar.style.width = "10%";
+};
+
+manager.onLoad = function () {
+  progressBar.style.width = "100%";
+
+  setTimeout(() => hideLoader(), 1000);
+};
+
+manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+  progressBar.style.width = `${((itemsLoaded * 100) / itemsTotal).toFixed(0)}%`;
+};
+
 //MODEL
-const loader = new THREE.GLTFLoader();
+const loader = new THREE.GLTFLoader(manager);
 
 const tl = gsap.timeline();
 
@@ -14,8 +86,6 @@ let bigBoxCameraTimeline = gsap.timeline({ paused: true });
 loader.crossOrigin = true;
 
 loader.load("./assets/glb/model.glb", (glb) => {
-  hideLoader();
-
   base = glb.scene;
 
   base.scale.set(1, 1, 1);
@@ -46,19 +116,23 @@ loader.load("./assets/glb/model.glb", (glb) => {
 
       //BIG BOX
       case "box001":
+        makeInstance(child, -100, 100);
+
         const bigBoxOpen = (child) => {
           //if (!bigBoxOpened) {
-          if (!modelOpened) {
+
+          if (!objectSelected) {
             littleBoxOpened && closeModal(".modal-little-box");
 
             bigBoxOpened = true;
             littleBoxOpened = false;
-            modelOpened = true;
+            objectSelected = true;
 
             const childReference = new THREE.Box3().setFromObject(child);
             let childCenter = childReference.getCenter(new THREE.Vector3());
 
             isMobile && (childCenter.y = -0.8);
+            !isMobile && (childCenter.x += 0.8);
 
             console.log("CHILDCENTERE: ", childCenter);
 
@@ -86,8 +160,8 @@ loader.load("./assets/glb/model.glb", (glb) => {
                 camera.position,
                 {
                   x: childCenter.x,
-                  y: childCenter.y + isMobile ? 6 : 4,
-                  z: childCenter.z + isMobile ? 6 : 4,
+                  y: isMobile ? 6 : 5,
+                  z: isMobile ? 6 : 5,
                   duration: 1,
                 },
                 0
@@ -95,7 +169,7 @@ loader.load("./assets/glb/model.glb", (glb) => {
               .to(
                 camera.rotation,
                 {
-                  x: isMobile ? -0.925 : -0.727,
+                  x: isMobile ? -0.925 : -0.712,
                   y: 0,
                   z: 0,
                   duration: 1,
@@ -119,14 +193,18 @@ loader.load("./assets/glb/model.glb", (glb) => {
 
       //LittleBox
       case "thins023":
+        makeInstance(child, 100, 0);
+
+        addTapIndicatorAnimation();
+
         const littleBoxOpen = () => {
           //if (!littleBoxOpened) {
-          if (!modelOpened) {
+          if (!objectSelected) {
             bigBoxOpened && closeModal(".modal-big-box");
 
             littleBoxOpened = true;
             bigBoxOpened = false;
-            modelOpened = true;
+            objectSelected = true;
 
             const childReference = new THREE.Box3().setFromObject(child);
             let childCenter = childReference.getCenter(new THREE.Vector3());
@@ -204,5 +282,3 @@ loader.load("./assets/glb/model.glb", (glb) => {
 
   scene.add(base);
 });
-
-//addLights();
