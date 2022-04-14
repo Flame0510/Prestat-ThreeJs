@@ -116,8 +116,6 @@ loader.load("./assets/glb/model.glb", (glb) => {
 
       //BIG BOX
       case "box001":
-        makeInstance(child, -100, 100);
-
         const bigBoxOpen = (child) => {
           //if (!bigBoxOpened) {
 
@@ -189,14 +187,14 @@ loader.load("./assets/glb/model.glb", (glb) => {
         domEvents.addEventListener(child, "touchstart", () =>
           bigBoxOpen(child)
         );
+
+        const tapIndicatorBigBox = makeInstance(child, 100, 0).tapIndicator;
+        tapIndicatorBigBox.addEventListener("click", () => bigBoxOpen(child));
+
         break;
 
       //LittleBox
       case "thins023":
-        makeInstance(child, 100, 0);
-
-        addTapIndicatorAnimation();
-
         const littleBoxOpen = () => {
           //if (!littleBoxOpened) {
           if (!objectSelected) {
@@ -271,6 +269,12 @@ loader.load("./assets/glb/model.glb", (glb) => {
         domEvents.addEventListener(child, "touchstart", () =>
           littleBoxOpen(child)
         );
+
+        const tapIndicatorLittleBox = makeInstance(child, 100, 0).tapIndicator;
+        tapIndicatorLittleBox.addEventListener("click", () =>
+          littleBoxOpen(child)
+        );
+
         break;
     }
 
