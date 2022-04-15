@@ -29,6 +29,7 @@ html body {
   font-family: "JosefinSans-Light";
   font-weight: 400;
   background: #876b9e;
+  overscroll-behavior: contain;
 }
 
 html body .container canvas {
@@ -90,13 +91,14 @@ html body .container .loader lottie-player {
 }
 
 html body .container .loader img {
-  height: 64px;
-  margin-bottom: 96px;
+  height: 32px;
+  margin-bottom: 48px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
   html body .container .loader img {
-    height: 32px;
+    height: 64px;
+    margin-bottom: 64px;
   }
 }
 
@@ -104,6 +106,7 @@ html body .container .loader .loader-progress-bar {
   width: 100%;
   max-width: 200px;
   height: 2px;
+  margin-bottom: 96px;
   background: #e0e0e0;
   position: relative;
 }
@@ -144,12 +147,28 @@ html body .container nav .nav-container .logo {
 }
 
 html body .container nav .nav-container button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background: none;
   border: none;
 }
 
-html body .container nav .nav-container img {
-  cursor: pointer;
+html body .container nav .nav-container .info {
+  height: 24px;
+  padding: 0;
+}
+
+html body .container nav .nav-container .cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 html body .container #labels {
@@ -281,8 +300,8 @@ html body .container .modal {
   top: 100%;
   right: 0;
   overflow: hidden;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  /* border-top-left-radius: 12px;
+        border-top-right-radius: 12px; */
 }
 
 @media screen and (min-width: 768px) {

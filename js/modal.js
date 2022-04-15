@@ -147,17 +147,14 @@ const closeModal = (modalClass = ".modal") => {
 
 const openModal = (modalClass) => {
   openModalTl = null;
-  openModalTl = gsap.timeline({
-    paused: true,
-    onComplete: () => {
-      modalOpened = true;
-      modalCompleteOpened = false;
-    },
-  });
-
-  console.log(modalClass);
-
-  openModalTl
+  openModalTl = gsap
+    .timeline({
+      paused: true,
+      onComplete: () => {
+        modalOpened = true;
+        modalCompleteOpened = false;
+      },
+    })
     .to(
       modalClass,
       isMobile
@@ -179,14 +176,14 @@ const openModal = (modalClass) => {
       },
       0
     )
-    .from(
+    .to(
       ".modal",
       isMobile
         ? {
             /* background:
               "radial-gradient(100% 50% at 50% 100%, #fff 100%, transparent 100%)", */
-            /* borderTopLeftRadius: 2000,
-            borderTopRightRadius: 2000, */
+            borderTopLeftRadius: 12,
+            borderTopRightRadius: 12,
           }
         : {
             /* borderTopLeftRadius: 2000,
@@ -215,6 +212,15 @@ const openModal = (modalClass) => {
         y: isMobile ? 200 : 0,
         stagger: 0.05,
       },
+      0
+    )
+    .to(
+      ".modal .modal-content-container",
+      isMobile
+        ? {
+            overflow: "hidden",
+          }
+        : {},
       0
     )
     .to(
@@ -280,16 +286,35 @@ const handleGesture = () => {
 
 if (isMobile) {
   const openModalComplete = (modalClass) => {
-    openModalTl.to(modalClass, {
-      top: 0,
-      duration: 0.5,
-    });
+    openModalTl
+      .to(
+        modalClass,
+        {
+          borderRadius: 0,
+          top: 0,
+          duration: 0.5,
+        },
+        1
+      )
+      .to(
+        ".modal .modal-content-container",
+        {
+          overflowY: "scroll",
+        },
+        1
+      );
 
     openModalTl.resume();
   };
 
   const swipe = (modalClass, modalCompleteOpened) => {
     const target = document.querySelector(modalClass);
+
+    const targetScrollContainer = document.querySelector(
+      ".modal-content-container"
+    );
+
+    console.log(targetScrollContainer.scrollTop);
 
     const handleGesture = () => {
       if (touchendY < touchstartY) return "up";
@@ -303,7 +328,9 @@ if (isMobile) {
     target.addEventListener("touchend", (e) => {
       touchendY = e.changedTouches[0].screenY;
       if (handleGesture() === "down") {
-        modalOpened && closeModal(), (modalCompleteOpened = false);
+        modalOpened &&
+          targetScrollContainer.scrollTop === 0 &&
+          (closeModal(), (modalCompleteOpened = false));
       } else {
         modalCompleteOpened === false &&
           ((modalCompleteOpened = true), openModalComplete(modalClass));

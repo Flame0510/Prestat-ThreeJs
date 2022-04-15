@@ -32,6 +32,8 @@ html {
 
     background: #876b9e;
 
+    overscroll-behavior: contain;
+
     .container {
       canvas {
         width: 100%;
@@ -87,11 +89,13 @@ html {
         }
 
         img {
-          height: 64px;
-          margin-bottom: 96px;
+          height: 32px;
 
-          @media screen and (max-width: 768px) {
-            height: 32px;
+          margin-bottom: 48px;
+
+          @media screen and (min-width: 768px) {
+            height: 64px;
+            margin-bottom: 64px;
           }
         }
 
@@ -99,6 +103,8 @@ html {
           width: 100%;
           max-width: 200px;
           height: 2px;
+
+          margin-bottom: 96px;
 
           background: #e0e0e0;
 
@@ -136,12 +142,24 @@ html {
             max-width: 100%;
             text-align: center;
           }
+
           button {
+            display: flex;
+            justify-content: center;
+
             background: none;
             border: none;
           }
-          img {
-            cursor: pointer;
+
+          .info {
+            height: 24px;
+
+            padding: 0;
+          }
+
+          .cart {
+            display: flex;
+            justify-content: center;
           }
         }
       }
@@ -262,8 +280,8 @@ html {
 
         overflow: hidden;
 
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
+        /* border-top-left-radius: 12px;
+        border-top-right-radius: 12px; */
 
         @media screen and (min-width: 768px) {
           width: 40%;

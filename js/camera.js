@@ -38,10 +38,13 @@ controls.enablePan = false;
 controls.enabled = false;
 controls.minDistance = 4;
 controls.maxDistance = 15;
-controls.rotateSpeed = 0.1;
+controls.rotateSpeed = 0.01;
 controls.zoomSpeed = 0.2;
 // controls.enableDamping = true;
 // controls.dampingFactor = 0.25;
+
+controls.minAzimuthAngle = -1.4;
+controls.maxAzimuthAngle = 1.8;
 
 const setDefaultPolarAngle = () => {
   const polarAngle = isMobile ? 1.17 : 1.01;

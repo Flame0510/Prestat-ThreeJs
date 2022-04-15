@@ -144,7 +144,7 @@ loader.load("./assets/glb/model.glb", (glb) => {
 
                 controls.enabled = true;
 
-                const polarAngle = isMobile ? 0.65 : 0.84;
+                const polarAngle = isMobile ? 0.645 : 0.86;
                 controls.minPolarAngle = polarAngle;
                 controls.maxPolarAngle = polarAngle;
 
@@ -275,6 +275,7 @@ loader.load("./assets/glb/model.glb", (glb) => {
           littleBoxOpen(child)
         );
 
+        addTapIndicatorAnimation();
         break;
     }
 
